@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SalesController;
 use App\Http\Controllers\CustomerClosingController;
 use App\Http\Controllers\CustomerProspectController;
+use App\Models\CustomerClosing;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,6 @@ Route::get('/', function () {
 Route::resource('/sales', SalesController::class);
 Route::resource('/customer_prospect', CustomerProspectController::class);
 Route::resource('/customer_closing', CustomerClosingController::class);
+Route::post('api/fetch-regencies', [CustomerClosingController::class, 'fetchregencies']);
+Route::post('api/fetch-district', [CustomerClosingController::class, 'fetchdistrict']);
+Route::post('api/fetch-village', [CustomerClosingController::class, 'fetchvillage']);

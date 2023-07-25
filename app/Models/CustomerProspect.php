@@ -27,4 +27,8 @@ class CustomerProspect extends Model
         return $this->belongsTo(MetodeBertemu::class, 'metode_bertemu_id');
 
     }
+    public function customer_closing(){
+        return $this->belongsTo(CustomerClosing::class, 'id');
+
+    }
 }

@@ -33,6 +33,15 @@
                 <i class="bi bi-person nav_icon"></i> 
                     <span class="nav_name">Customer Prospect</span> 
                 </a> 
+
+                @if($title == 'customer closing') 
+                <a href="{{'customer_closing'}}" class="nav_link active"> 
+                @else
+                <a href="{{'customer_closing'}}" class="nav_link"> 
+                    @endif
+                <i class="bi bi-person nav_icon"></i> 
+                    <span class="nav_name">Customer Closing</span> 
+                </a> 
             </div>
             {{-- @if ((auth()->user()->role == 0))
             <div> 
