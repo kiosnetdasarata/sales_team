@@ -1,6 +1,6 @@
 <script>
     //button create post event
-    $('body').on('click', '#btn-delete-customer', function () {
+    $('body').on('click', '#btn-delete-customer-prospect', function () {
 
         let customer_id = $(this).data('id');
         let token   = $("meta[name='csrf-token']").attr("content");
@@ -20,7 +20,7 @@
                 //fetch to delete data
                 $.ajax({
 
-                    url: `/customer/${customer_id}`,
+                    url: `/customer_prospect/${customer_id}`,
                     type: "DELETE",
                     cache: false,
                     data: {
