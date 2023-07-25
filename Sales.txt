@@ -1,0 +1,13 @@
+Penjelasan Sekilas Tentang Sales :
+ 
+Sales memiliki dashboard yang berfungsi untuk menginput customer yang diperoleh, dimana customer dibagi menjadi 2, customer prospect dan closing. Customer Prospect merupakan customer yang berpotensi tertarik pada produk yang ditawarkan.Terdapat 2 metode bertemu yaitu sosmed dan bertemu langsung, dan status dibagi menjadi 3 ragu-ragu, tertarik dan closing.  Customer closing merupakan customer yang sudah benar-benar tertarik pada produk yang ditawarkan.
+
+Fitur Utama Sales : 
+
+Halaman Utama : Menampilkan berapa customer yang diperoleh oleh sales.
+Halaman Customer Prospect : Memungkinkan sales menginput customer yang prospect dalam ketertarikan produk perusahaan
+Halaman Customer Closing : Memungkinkan sales menginputkan customer yang benar-benar tertarik dan akan diproses oleh operasional, dimana sumber data awal berasal dari inputan customer prospect
+
+Alur Fitur : 
+Customer Prospek : Sales akan menginputkan beberapa data singkat seperti nama alamat, nomor telepon, metode ketemu dan status.
+Customer Closing : Sales akan menginputkan customer yang tertarik dari data customer prospek dimana sales harus menginputkan data tambahan yaitu data personal dari informasi ktp seperti nama, alamat dsb dan melampirkan foto ktp, dan data teknis seperti alamat yang akan dipasang internet, koordinat, paket layanan dan promo jika sales menawarkan promo serta melampirkan foto rumah, dan otomatis status customer prospect yang dipilih akan berubah menjadi closing
