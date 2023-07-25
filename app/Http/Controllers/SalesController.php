@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\CustomerClosing;
 use App\Models\CustomerProspect;
-use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class SalesController extends Controller
 {

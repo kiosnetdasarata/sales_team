@@ -10,9 +10,10 @@ class CustomerProspect extends Model
     use HasFactory;
     
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'id',
+        'nama',
+        'alamat',
+        'no_tlpn'
     ];
 
 }

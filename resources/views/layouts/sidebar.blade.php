@@ -24,6 +24,15 @@
                 <i class="bi bi-grid-1x2-fill nav_icon"></i> 
                     <span class="nav_name">Dashboard</span> 
                 </a> 
+
+                @if($title == 'customer prospect') 
+                <a href="{{'customer_prospect'}}" class="nav_link active"> 
+                @else
+                <a href="{{'customer_prospect'}}" class="nav_link"> 
+                    @endif
+                <i class="bi bi-person nav_icon"></i> 
+                    <span class="nav_name">Dashboard</span> 
+                </a> 
             </div>
             {{-- @if ((auth()->user()->role == 0))
             <div> 
