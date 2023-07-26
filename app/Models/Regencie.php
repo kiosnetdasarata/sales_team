@@ -13,10 +13,10 @@ class Regencie extends Model
         'province_id',
         'nama',
     ];
-    public function customer_closing(){
-        return $this->hasMany(CustomerClosing::class, 'id');
+    // public function customer_closing(){
+    //     return $this->hasMany(CustomerClosing::class, 'id');
 
-    }
+    // }
     public function province(){
         return $this->belongsTo(Province::class, 'province_id');
 

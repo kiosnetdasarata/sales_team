@@ -12,7 +12,7 @@
                 @csrf
             <div class="modal-body">
                 <div class="form-group">
-                    <label for="name" class="control-label">Nama Customer Prospect</label>
+                    <label for="name" class="control-label">Nama Customer Closing</label>
                     <select class="select2 form-control" name="prospect_id" id="prospect_id">
                         <option disabled selected>--pilih Customer--</option>
                          @foreach ($prospects as $prospect)
@@ -23,7 +23,7 @@
                 </div>
                     <div class="form-group">
                         <label for="name" class="control-label">Nama Paket</label>
-                        <select class="select2 form-control" name="prospect_id" id="prospect_id">
+                        <select class="select2 form-control" name="paket_id" id="paket_id">
                             <option disabled selected>--pilih Paket--</option>
                              @foreach ($pakets as $paket)
                                  <option value="{{ $paket->id }}">{{ $paket->nama_layanan }}</option>
@@ -33,10 +33,10 @@
                     </div>
                         <div class="form-group">
                             <label for="name" class="control-label">Nama Promo</label>
-                            <select class="select2 form-control" name="prospect_id" id="prospect_id">
+                            <select class="select2 form-control" name="promo_id" id="promo_id">
                                 <option disabled selected>--pilih Promo--</option>
                                  @foreach ($programs as $program)
-                                     <option value="{{ $program->id }}">{{ $paket->nama_program }}</option>
+                                     <option value="{{ $program->id }}">{{ $program->nama_program }}</option>
                                  @endforeach
                                </select>
                             <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-title"></div>
@@ -53,13 +53,16 @@
                         </div>
                         <div class="form-group">
                             <label for="name" class="control-label">JK </label>
-                            <input type="text" class="form-control" name="jk" id="jk">
+                            <select class="select2 form-control" name="jk" id="jk">
+                                <option value="laki-laki">Laki-laki</option>
+                                <option value="perempuan">Perempuan</option>
+                            </select>
                             <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-title"></div>
                         </div>
                         <div class="form-group">
-                            <label for="name" class="control-label">Provinci</label>
+                            <label for="name" class="control-label">Province</label>
                             <select class="select2 form-control" name="province_id" id="province_id">
-                                <option disabled selected>--pilih Provinsi--</option>
+                                <option disabled selected>--Select Province--</option>
                                  @foreach ($provinces as $province)
                                      <option value="{{ $province->id }}">{{ $province->nama }}</option>
                                  @endforeach

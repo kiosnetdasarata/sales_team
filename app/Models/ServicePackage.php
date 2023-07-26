@@ -13,7 +13,7 @@ class ServicePackage extends Model
         'nama_layanan',
         'harga',
     ];
-    public function customer_closing(){
+    public function service_package(){
         return $this->hasMany(CustomerClosing::class, 'id');
 
     }

@@ -27,3 +27,4 @@ Route::resource('/customer_closing', CustomerClosingController::class);
 Route::post('api/fetch-regencies', [CustomerClosingController::class, 'fetchregencies']);
 Route::post('api/fetch-district', [CustomerClosingController::class, 'fetchdistrict']);
 Route::post('api/fetch-village', [CustomerClosingController::class, 'fetchvillage']);
+Route::get('/edit/{id}',[CustomerClosingController::class,'edit']);

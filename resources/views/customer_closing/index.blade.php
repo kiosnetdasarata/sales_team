@@ -19,10 +19,8 @@
                                     <th>NIK</th>
                                     <th>Nama</th>
                                     <th>jk</th>
-                                    <th>Provinsi</th>
-                                    <th>Kota</th>
-                                    <th>Kecamatan</th>
-                                    <th>Dusun</th>
+                                    <th>Alamat</th>
+                                    
                                     <th>Tanggal Lahir</th>
                                     <th>Foto KTP</th>
                                     <th>Foto Rumah</th>
@@ -38,21 +36,23 @@
                                     <td>{{ $customer->nik }}</td>
                                     <td>{{ $customer->nama }}</td>
                                     <td>{{ $customer->jk }}</td>
-                                    <td>{{ $customer->province->nama }}</td>
-                                    <td>{{ $customer->regencie->nama }}</td>
-                                    <td>{{ $customer->district->nama }}</td>
-                                    <td>{{ $customer->village->nama }}</td>
+                                    <td>{{ $customer->village->nama }},
+                                        {{ $customer->district->nama }}, 
+                                        {{ $customer->regencie->nama }}, 
+                                        {{ $customer->province->nama }}
+                                    </td>
+                                    
                                     <td>{{ $customer->tgl_lahir }}</td>
                                     <td>
-                                        <a href="{{ url('img/foto_ktp').'/'. $customer->foto_ktp }}"> <img  style="max-height: 50px; max-widht:50px;" src="{{ url('img/foto_ktp').'/'. $customer->foto_ktp }}"></a>
+                                        <a href="{{ url('img/foto_ktp').'/'. $customer->fto_ktp }}"> <img  style="max-height: 50px; max-widht:50px;" src="{{ url('img/foto_ktp').'/'. $customer->fto_ktp }}"></a>
                                     </td>
                                     <td>
-                                        <a href="{{ url('img/foto_rumah').'/'. $customer->foto_rumah }}"> <img  style="max-height: 50px; max-widht:50px;" src="{{ url('img/foto_rumah').'/'. $customer->foto_rumah }}"></a>
+                                        <a href="{{ url('img/foto_rumah').'/'. $customer->fto_rumah }}"> <img  style="max-height: 50px; max-widht:50px;" src="{{ url('img/foto_rumah').'/'. $customer->fto_rumah }}"></a>
                                     </td>
                                     <td class="text-center">
                                         
-                                        <a href="javascript:void(0)" id="btn-edit-customer-prospect" data-id="{{ $customer->id }}" class="btn btn-primary btn-sm">EDIT</a>
-                                        <a href="javascript:void(0)" id="btn-delete-customer-prospect" data-id="{{ $customer->id }}" class="btn btn-danger btn-sm">DELETE</a>
+                                        <a href="{{ url('edit/'.$customer->id) }}" id="btn-edit-customer-closing" class="btn btn-primary btn-sm">EDIT</a>
+                                        <a href="javascript:void(0)" id="btn-delete-customer-closing" data-id="{{ $customer->id }}" class="btn btn-danger btn-sm">DELETE</a>
                                         
                                     </td>
                                 </tr>
@@ -66,7 +66,7 @@
         </div>
     </div>
         @include('customer_closing.create')
-        {{-- @include('customer_prospect.edit')
-        @include('customer_prospect.delete') --}}
+        
+        @include('customer_closing.delete')
         
 @endsection

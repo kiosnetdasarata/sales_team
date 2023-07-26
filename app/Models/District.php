@@ -13,10 +13,10 @@ class District extends Model
         'regencies_id',
         'nama',
     ];
-    public function customer_closing(){
-        return $this->belongsTo(CustomerClosing::class, 'id');
+    // public function customer_closing(){
+    //     return $this->belongsTo(CustomerClosing::class, 'id');
 
-    }
+    // }
     public function regencie(){
         return $this->belongsTo(Regencie::class, 'regencies_id');
 

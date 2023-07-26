@@ -13,10 +13,10 @@ class Village extends Model
         'district_id',
         'nama',
     ];
-    public function customer_closing(){
-        return $this->hasMany(CustomerClosing::class, 'id');
+    // public function customer_closing(){
+    //     return $this->hasMany(CustomerClosing::class, 'id');
 
-    }
+    // }
     public function district(){
         return $this->belongsTo(District::class, 'district_id');
 

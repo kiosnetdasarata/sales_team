@@ -14,7 +14,7 @@ class Program extends Model
         'nominal',
         'jenis_promo'
     ];
-    public function customer_closing(){
+    public function program(){
         return $this->hasMany(CustomerClosing::class, 'id');
 
     }

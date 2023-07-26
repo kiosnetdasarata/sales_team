@@ -2,8 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Program;
+use App\Models\Village;
+use App\Models\District;
+use App\Models\Province;
+use App\Models\Regencie;
+use App\Models\CustomerProspect;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class CustomerClosing extends Model
 {
@@ -34,7 +40,7 @@ class CustomerClosing extends Model
 
     }
     public function service_package(){
-        return $this->belongsTo(Program::class, 'paket_id');
+        return $this->belongsTo(ServicePackage::class, 'paket_id');
 
     }
     public function province(){
@@ -42,7 +48,7 @@ class CustomerClosing extends Model
 
     }
     public function regencie(){
-        return $this->belongsTo(Regenciee::class, 'kota_id');
+        return $this->belongsTo(Regencie::class, 'kota_id');
 
     }
     public function district(){

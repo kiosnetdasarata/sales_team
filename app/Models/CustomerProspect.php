@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Status;
 use App\Models\MetodeBertemu;
+use App\Models\CustomerClosing;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -27,7 +28,7 @@ class CustomerProspect extends Model
         return $this->belongsTo(MetodeBertemu::class, 'metode_bertemu_id');
 
     }
-    public function customer_closing(){
+    public function customer_prospect(){
         return $this->belongsTo(CustomerClosing::class, 'id');
 
     }

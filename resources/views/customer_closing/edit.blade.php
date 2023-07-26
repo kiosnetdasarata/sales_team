@@ -1,57 +1,148 @@
-<!-- Modal -->
-<div class="modal fade" id="modal-edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">EDIT Customer</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="{{'customer_prospect'}}"  method="POST" enctype="multipart/form-data"> 
+@extends('layouts.master')
+    @section('content')
+    <div class="container" style="margin-top: 50px">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="text-center">Edit Data Customer </h4>
+            <form action="{{'customer_closing'}}"  method="POST" enctype="multipart/form-data"> 
                 
                 @csrf
                 @method('put')
             <div class="modal-body">
-
-                <input type="hidden" name="id" id="id">
-
+                @foreach ($customer_closing as $customer_closings)
+                <input type="hidden" name="id" id="id" value="{{$customer_closings->id}}">
+                
                 <div class="form-group">
-                    <label for="name" class="control-label">Nama Customer</label>
-                    <input type="text" class="form-control" name="name" id="name-edit">
-                    <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-name-edit"></div>
-                </div>
-                <div class="form-group">
-                    <label for="name" class="control-label">Alamat</label>
-                    <input type="text" class="form-control" name="alamat" id="alamat-edit">
-                    <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-name-edit"></div>
-                </div>
-                <div class="form-group">
-                    <label for="name" class="control-label">Nomor Telepon</label>
-                    <input type="text" class="form-control" name="no_tlpn" id="no_tlpn-edit">
-                    <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-name-edit"></div>
-                </div>
-                <div class="form-group">
-                    <label for="name" class="control-label">Metode Bertemu</label>
-                    <select class="select2 form-control" name="metode_bertemu" id="metode_bertemu-edit">
-                        {{-- <option disabled selected>--pilih metode--</option> --}}
-                         @foreach ($metode_bertemu as $metode_bertemus)
-                             <option value="{{ $metode_bertemus->id }}">{{ $metode_bertemus->metode_bertemu }}</option>
-                         @endforeach
+                    <label for="name" class="control-label">Nama Customer Closing</label>
+                    <select class="select2 form-control" name="prospect_id" id="prospect_id-edit" disabled="true">
+                        
+                             <option value="{{ $customer_closings->prospect_id }}">{{ $customer_closings->customer_prospect->nama }}</option>
+                         
                        </select>
                     <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-title"></div>
                 </div>
-                <div class="form-group">
-                    <label for="name" class="control-label">Status</label>
-                    <select class="select2 form-control" name="status" id="status-edit">
-                        {{-- <option disabled selected>--pilih status--</option> --}}
-                         @foreach ($status as $statuss)
-                             <option value="{{ $statuss->id }}">{{ $statuss->status }}</option>
-                         @endforeach
-                       </select>
-                    <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-title"></div>
-                </div>
-            </div>
+                    <div class="form-group">
+                        <label for="name" class="control-label">Nama Paket</label>
+                        <select class="select2 form-control" name="paket_id" id="paket_id-edit">
+                            <option disabled selected>--pilih Paket--</option>
+                             @foreach ($pakets as $paket)
+                                 <option value="{{ $paket->id }}" 
+                                    @if($paket->id == $customer_closings->paket_id)  {
+
+                                    '' selected } @endif>{{ $paket->nama_layanan }}</option>
+                             @endforeach
+                            
+                           </select>
+                        <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-title"></div>
+                    </div>
+                        <div class="form-group">
+                            <label for="name" class="control-label">Nama Promo</label>
+                            <select class="select2 form-control" name="promo_id" id="promo_id-edit">
+                                <option disabled selected>--pilih Promo--</option>
+                                @foreach ($programs as $program)
+                                <option value="{{ $program->id }}" 
+                                   @if($program->id == $customer_closings->paket_id)  {
+
+                                   '' selected } @endif>{{ $program->nama_program }}</option>
+                            @endforeach
+                               </select>
+                            <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-title"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="control-label">NIK </label>
+                            <input type="text" class="form-control" name="nik" id="nik-edit" value="{{$customer_closings->nik}}">
+                            <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-title"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="control-label">Nama </label>
+                            <input type="text" class="form-control" name="nama" id="nama-edit" value="{{$customer_closings->nama}}">
+                            <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-title"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="control-label">JK </label>
+                            <select class="select2 form-control" name="jk" id="jk-edit">
+                                <option value="Laki-Laki" @if('Laki-Laki' == $customer_closings->jk)  {
+
+                                    '' selected } @endif>Laki-laki</option>
+                                <option value="Perempuan" @if('Perempuan' == $customer_closings->jk)  {
+
+                                    '' selected } @endif>Perempuan</option>
+                            </select>
+                            <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-title"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="control-label">Province</label>
+                            <select class="select2 form-control" name="province_id" id="province_id-edit">
+                                <option disabled selected>--Select Province--</option>
+                                 @foreach ($provinces as $province)
+                                     <option value="{{ $province->id }}"@if($province->id == $customer_closings->provinsi_id)  {
+
+                                        '' selected } @endif>{{ $province->nama }}</option>
+                                 @endforeach
+                               </select>
+                            <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-title"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="control-label">Kota</label>
+                            <select class="select2 form-control" name="regencies_id" id="regencies_id-edit">
+                                @if (!empty($regencies))
+                                    @foreach ($regencies as $regencie)
+                                        <option {{ ($customer_closings->kota_id == $regencie->id) ? 'selected' : '' }} value="{{ $regencie->id }}">{{ $regencie->nama }}</option>
+                                    @endforeach
+                                @endif
+                               </select>
+                            <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-title"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="control-label">Kecamatan</label>
+                            <select class="select2 form-control" name="district_id" id="district_id-edit">
+                                @if (!empty($districts))
+                                @foreach ($districts as $district)
+                                    <option {{ ($customer_closings->kecamatan_id == $district->id) ? 'selected' : '' }} value="{{ $district->id }}">{{ $district->nama }}</option>
+                                @endforeach
+                            @endif
+                               </select>
+                            <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-title"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="control-label">Dusun</label>
+                            <select class="select2 form-control" name="village_id" id="village_id-edit">
+                                @if (!empty($villages))
+                                @foreach ($villages as $village)
+                                    <option {{ ($customer_closings->dusun_id == $village->id) ? 'selected' : '' }} value="{{ $village->id }}">{{ $village->nama }}</option>
+                                @endforeach
+                            @endif
+                               </select>
+                            <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-title"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="control-label">Tanggal Lahir</label>
+                            <input type="date" class="form-control" name="tgl_lahir" id="tgl_lahir-edit" value="{{$customer_closings->tgl_lahir}}">
+                            <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-name-edit"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="control-label">Foto KTP</label>
+                            <input type="file" class="form-control" name="foto_ktp" id="foto_ktp">
+                            <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-name-edit"></div>
+                            </br>
+                            <div id="Foto_KTP">
+                                <img src="{{ asset('img/foto_ktp/'.$customer_closings->fto_ktp) }}" width="300" id="insertedImages">
+                            </div>
+                            <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-name-edit"></div>
+                            <input type="hidden" name="foto_ktp_lama" id="foto_ktp_lama">
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="control-label">Foto Rumah</label>
+                            <input type="file" class="form-control" name="foto_rumah" id="foto_rumah">
+                            <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-name-edit"></div>
+                            </br>
+                            <div id="Foto_Rumah">
+                                <img src="{{ asset('img/foto_rumah/'.$customer_closings->fto_rumah) }}" width="300" id="insertedImages">
+                            </div>
+                            <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-name-edit"></div>
+                            <input type="hidden" name="foto_rumah_lama" id="foto_rumah_lama">
+                        </div>
+                        @endforeach
                
             </div>
             <div class="modal-footer">
@@ -61,40 +152,74 @@
         </form>
         </div>
     </div>
-</div>
+    </div>
+
 
 <script>
-    //button create post event
-    $('body').on('click', '#btn-edit-customer-prospect', function () {
-
-        let id = $(this).data('id');
-        
-        //fetch detail post with ajax
-        
-        console.log(id);
-        $.ajax({
-            url: `/customer_prospect/${id}`,
-            type: "GET",
-            cache: false,
-            success:function(response){
-
-                //fill data to form
-                $('#id').val(response.data.id);
-                console.log(response.data.id);
-                $('#name-edit').val(response.data.nama);
-                $('#alamat-edit').val(response.data.alamat);
-                $('#no_tlpn-edit').val(response.data.no_tlpn);
-                $('#metode_bertemu-edit').val(response.data.metode_bertemu_id);
-                $('#status-edit').val(response.data.status_id);
-                //open modal
-               
-                $('#modal-edit').modal('show');
-            }
+    $(document).ready(function () {
+            $('#province_id-edit').on('change', function () {
+                var idCountry = this.value;
+                console.log(idCountry);
+                $("#regencies_id-edit").html('');
+                $.ajax({
+                    url: "{{url('api/fetch-regencies')}}",
+                    type: "POST",
+                    data: {
+                        province_id: idCountry,
+                        _token: '{{csrf_token()}}'
+                    },
+                    dataType: 'json',
+                    success: function (result) {
+                        $('#regencies_id-edit').html('<option value="">Select Regencies</option>');
+                        $.each(result.regencie, function (key, value) {
+                            $("#regencies_id-edit").append('<option value="' + value.id + '">' + value.nama + '</option>');
+                        });
+                        $('#district_id-edit').html('<option value="">Select District</option>');
+                    }
+                });
+            });
+            $('#regencies_id-edit').on('change', function () {
+                var idCountry = this.value;
+                $("#district_id-edit").html('');
+                $.ajax({
+                    url: "{{url('api/fetch-district')}}",
+                    type: "POST",
+                    data: {
+                        regencie_id: idCountry,
+                        _token: '{{csrf_token()}}'
+                    },
+                    dataType: 'json',
+                    success: function (result) {
+                        $('#district_id-edit').html('<option value="">Select District</option>');
+                        $.each(result.district, function (key, value) {
+                            $("#district_id-edit").append('<option value="' + value.id + '">' + value.nama + '</option>');
+                        });
+                         $('#village_id-edit').html('<option value="">Select Village</option>');
+                    }
+                });
+            });
+            $('#district_id-edit').on('change', function () {
+                var idCountry = this.value;
+                $("#village_id-edit").html('');
+                $.ajax({
+                    url: "{{url('api/fetch-village')}}",
+                    type: "POST",
+                    data: {
+                        district_id: idCountry,
+                        _token: '{{csrf_token()}}'
+                    },
+                    dataType: 'json',
+                    success: function (result) {
+                        $('#village_id-edit').html('<option value="">Select Village</option>');
+                        $.each(result.village, function (key, value) {
+                            $("#village_id-edit").append('<option value="' + value.id + '">' + value.nama + '</option>');
+                        });
+                        
+                    }
+                });
+            });
         });
-       
-    });
+    </script>
 
-    
 
-</script>
-
+@endsection
