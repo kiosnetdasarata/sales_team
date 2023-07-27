@@ -14,7 +14,7 @@ class SalesController extends Controller
      */
     public function index()
     {
-        $customer_prospect = CustomerProspect::count();
+        $customer_prospect = CustomerProspect::where('status_id','2')->orWhere('status_id','1')->count();
         $customer_closing = CustomerClosing::count();
         $title='dashboard';
         //$kategoris = Kategori::orderBy('id_kategori', 'asc')->paginate(10);
