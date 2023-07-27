@@ -174,70 +174,7 @@
 
     });
 
-    // $('#update').click(function(e) {
-    //     e.preventDefault();
-
-    //     //define variable
-    //     let id = $('#id').val();
-        
-    //     let name                = $('#name-edit').val();
-    //     let alamat              = $('#alamat-edit').val();
-    //     let no_tlpn             = $('#no_tlpn-edit').val();
-    //     let metode_bertemu      = $('#metode_bertemu-edit').val();
-    //     let status              = $('#status-edit').val();
-    //     let token               = $("meta[name='csrf-token']").attr("content");
-    //     console.log(status);
-    //     //ajax
-    //     $.ajax({
-
-    //         url: `/customer_prospect/${id}`,
-    //         type: "PUT",
-    //         cache: false,
-    //         data: {
-    //             "name"              : name,
-    //             "no_tlpn"           : no_tlpn,
-    //             "alamat"            : alamat,
-    //             "metode_bertemu"    : metode_bertemu,
-    //             "status"            : status,
-    //             "_token"            : token
-    //         },
-    //         success:function(response){
-
-    //             //show success message
-    //             Swal.fire({
-                   
-    //                 icon: 'success',
-    //                 title: `${response.message}`,
-    //                 showConfirmButton: false,
-    //                 timer: 3000
-    //             });
-
-                
-
-    //             //close modal
-    //             $('#modal-edit').modal('hide');
-    //             setTimeout(function(){
-    //                 location.reload();
-    //             }, 2000);
-                
-
-    //         },
-            
-    //         error:function(error){
-                
-    //             if(error.responseJSON.title[0]) {
-
-    //                 //show alert
-    //                 $('#alert-name-edit').removeClass('d-none');
-    //                 $('#alert-name-edit').addClass('d-block');
-
-    //                 //add message to alert
-    //                 $('#alert-name-edit').html(error.responseJSON.title[0]);
-    //             } 
-    //         }
-    //     });
-
-    // });
+   
     
 
 </script>
