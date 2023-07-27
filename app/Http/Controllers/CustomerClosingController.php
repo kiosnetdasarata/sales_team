@@ -174,7 +174,127 @@ class CustomerClosingController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'prospect_id'   => 'required',
+            'paket_id'      =>'required',
+            'promo_id'      => 'required',
+            'nik'           => 'required',
+            'nama'          => 'required',
+            'jk'            => 'required',
+            'province_id'   => 'required',
+            'regencies_id'  => 'required',
+            'district_id'   => 'required',
+            'village_id'    => 'required',
+            'tgl_lahir'     => 'required',
+            
+
+        ]);
+
+        //check if validation fails
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+        if ($request->foto_ktp==''&& $request->foto_rumah=='') {
+            CustomerClosing::where('id',$id)->update([
+                'prospect_id'   => $request->prospect_id,
+                'paket_id'      =>$request->paket_id,
+                'promo_id'      => $request->promo_id,
+                'nik'           => $request->nik,
+                'nama'          => $request->nama,
+                'jk'            => $request->jk,
+                'provinsi_id'   => $request->province_id,
+                'kota_id'       => $request->regencies_id,
+                'kecamatan_id'  => $request->district_id,
+                'dusun_id'      => $request->village_id,
+                'tgl_lahir'     => $request->tgl_lahir,
+                ]);
+        }
+        elseif($request->foto_ktp!=''&& $request->foto_rumah==''){
+            File::delete('img/foto_ktp/'.$request->foto_ktp_lama);
+           
+            if ($request->hasFile('foto_ktp')) {
+                $file = $request->file('foto_ktp');
+                $foto_ktp = time() . '.' . $file->extension();
+                $file->move(public_path('img/foto_ktp'), $foto_ktp);
+                
+            } 
+            
+            CustomerClosing::where('id',$id)->update([
+                'prospect_id'   => $request->prospect_id,
+                'paket_id'      => $request->paket_id,
+                'promo_id'      => $request->promo_id,
+                'nik'           => $request->nik,
+                'nama'          => $request->nama,
+                'jk'            => $request->jk,
+                'provinsi_id'   => $request->province_id,
+                'kota_id'       => $request->regencies_id,
+                'kecamatan_id'  => $request->district_id,
+                'dusun_id'      => $request->village_id,
+                'tgl_lahir'     => $request->tgl_lahir,
+                'fto_ktp'       => $foto_ktp,
+                
+            ]);
+        }
+        elseif($request->foto_ktp==''&& $request->foto_rumah!=''){
+            File::delete('img/foto_rumah/'.$request->foto_rumah_lama);
+            if ($request->hasFile('foto_rumah')) {
+                $file = $request->file('foto_rumah');
+                $foto_rumah = time() . '.' . $file->extension();
+                $file->move(public_path('img/foto_rumah'), $foto_rumah);
+                
+            } 
+            
+            CustomerClosing::where('id',$id)->update([
+                'prospect_id'   => $request->prospect_id,
+                'paket_id'      => $request->paket_id,
+                'promo_id'      => $request->promo_id,
+                'nik'           => $request->nik,
+                'nama'          => $request->nama,
+                'jk'            => $request->jk,
+                'provinsi_id'   => $request->province_id,
+                'kota_id'       => $request->regencies_id,
+                'kecamatan_id'  => $request->district_id,
+                'dusun_id'      => $request->village_id,
+                'tgl_lahir'     => $request->tgl_lahir,
+                'fto_rumah'     => $foto_rumah,
+                
+            ]);
+        }
+        else{
+            File::delete('img/foto_ktp/'.$request->foto_ktp_lama);
+            File::delete('img/foto_rumah/'.$request->foto_rumah_lama);
+            if ($request->hasFile('foto_ktp')) {
+                $file = $request->file('foto_ktp');
+                $foto_ktp = time() . '.' . $file->extension();
+                $file->move(public_path('img/foto_ktp'), $foto_ktp);
+               
+            } 
+            if ($request->hasFile('foto_rumah')) {
+                $file = $request->file('foto_rumah');
+                $foto_rumah = time() . '.' . $file->extension();
+                $file->move(public_path('img/foto_rumah'), $foto_rumah);
+                
+            } 
+            //create post
+            CustomerClosing::where('id',$id)->update([
+                'prospect_id'   => $request->prospect_id,
+                'paket_id'      => $request->paket_id,
+                'promo_id'      => $request->promo_id,
+                'nik'           => $request->nik,
+                'nama'          => $request->nama,
+                'jk'            => $request->jk,
+                'provinsi_id'   => $request->province_id,
+                'kota_id'       => $request->regencies_id,
+                'kecamatan_id'  => $request->district_id,
+                'dusun_id'      => $request->village_id,
+                'tgl_lahir'     => $request->tgl_lahir,
+                'fto_ktp'       => $foto_ktp,
+                'fto_rumah'     => $foto_rumah,
+            ]);
+        }
+        
+       
+        return redirect()->route('customer_closing');
     }
 
     /**

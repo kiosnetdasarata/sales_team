@@ -3,22 +3,24 @@
     <div class="container" style="margin-top: 50px">
         <div class="row">
             <div class="col-md-12">
+                @foreach ($customer_closing as $customer_closings)
                 <h4 class="text-center">Edit Data Customer </h4>
-            <form action="{{'customer_closing'}}"  method="POST" enctype="multipart/form-data"> 
+            <form {{route('update_customer_closing', ["id" => $customer_closings->id])}} name="form_edit" id="form_edit" method="POST" enctype="multipart/form-data"> 
                 
                 @csrf
                 @method('put')
             <div class="modal-body">
-                @foreach ($customer_closing as $customer_closings)
+                
                 <input type="hidden" name="id" id="id" value="{{$customer_closings->id}}">
                 
                 <div class="form-group">
                     <label for="name" class="control-label">Nama Customer Closing</label>
-                    <select class="select2 form-control" name="prospect_id" id="prospect_id-edit" disabled="true">
+                    <select class="select2 form-control" disabled="true">
                         
                              <option value="{{ $customer_closings->prospect_id }}">{{ $customer_closings->customer_prospect->nama }}</option>
                          
                        </select>
+                       <input type="hidden" name="prospect_id" id="prospect_id" value="{{$customer_closings->prospect_id}}">
                     <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-title"></div>
                 </div>
                     <div class="form-group">
@@ -129,7 +131,7 @@
                                 <img src="{{ asset('img/foto_ktp/'.$customer_closings->fto_ktp) }}" width="300" id="insertedImages">
                             </div>
                             <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-name-edit"></div>
-                            <input type="hidden" name="foto_ktp_lama" id="foto_ktp_lama">
+                            <input type="hidden" name="foto_ktp_lama" id="foto_ktp_lama" value="{{$customer_closings->fto_ktp}}">
                         </div>
                         <div class="form-group">
                             <label for="name" class="control-label">Foto Rumah</label>
@@ -140,7 +142,7 @@
                                 <img src="{{ asset('img/foto_rumah/'.$customer_closings->fto_rumah) }}" width="300" id="insertedImages">
                             </div>
                             <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-name-edit"></div>
-                            <input type="hidden" name="foto_rumah_lama" id="foto_rumah_lama">
+                            <input type="hidden" name="foto_rumah_lama" id="foto_rumah_lama" value="{{$customer_closings->fto_rumah}}">
                         </div>
                         @endforeach
                
@@ -219,7 +221,18 @@
                 });
             });
         });
-    </script>
 
+//         $("#form_edit").submit(function(event){
+//         event.preventDefault();
+//         let id = $customerclosing->id;
+//         console.log(id);
+//         $.ajax({
+//             url: '/edit/${id}',
+//             type: 'post',
+//             data: $("#form_edit").serializeArray(),
+//             dataType: 'json',
+//         }); 
+//    })
+    </script>
 
 @endsection

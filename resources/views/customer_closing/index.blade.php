@@ -9,9 +9,9 @@
 
                         <a href="javascript:void(0)" class="btn btn-success mb-2" id="btn-create-customer-closing">TAMBAH</a>
 
-                        <table class="table table-bordered table-striped">
+                        <table class="table table-bordered table-striped" style="font-size: 15px;">
                             <thead>
-                                <tr>
+                                <tr style="text-align: center; font-size: 10px;">
                                 
                                     <th>Nama Customer</th>
                                     <th>Paket</th>

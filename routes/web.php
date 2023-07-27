@@ -24,7 +24,9 @@ Route::get('/', function () {
 Route::resource('/sales', SalesController::class);
 Route::resource('/customer_prospect', CustomerProspectController::class);
 Route::resource('/customer_closing', CustomerClosingController::class);
+Route::get('/customer_closing',[CustomerClosingController::class,'index'])->name('customer_closing');
 Route::post('api/fetch-regencies', [CustomerClosingController::class, 'fetchregencies']);
 Route::post('api/fetch-district', [CustomerClosingController::class, 'fetchdistrict']);
 Route::post('api/fetch-village', [CustomerClosingController::class, 'fetchvillage']);
 Route::get('/edit/{id}',[CustomerClosingController::class,'edit']);
+Route::put('/edit/{id}',[CustomerClosingController::class,'update'])->name('update_customer_closing');
