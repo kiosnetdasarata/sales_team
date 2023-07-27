@@ -33,7 +33,6 @@
                                     <td class="text-center">
                                         
                                         <a href="javascript:void(0)" id="btn-edit-customer-prospect" data-id="{{ $customer->id }}" class="btn btn-primary btn-sm">EDIT</a>
-                                        <a href="javascript:void(0)" id="btn-delete-customer-prospect" data-id="{{ $customer->id }}" class="btn btn-danger btn-sm">DELETE</a>
                                         
                                     </td>
                                 </tr>
@@ -48,6 +47,6 @@
     </div>
         @include('customer_prospect.create')
         @include('customer_prospect.edit')
-        @include('customer_prospect.delete')
+        
         
 @endsection

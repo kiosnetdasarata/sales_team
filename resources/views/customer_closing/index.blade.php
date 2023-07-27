@@ -52,7 +52,6 @@
                                     <td class="text-center">
                                         
                                         <a href="{{ url('edit/'.$customer->id) }}" id="btn-edit-customer-closing" class="btn btn-primary btn-sm">EDIT</a>
-                                        <a href="javascript:void(0)" id="btn-delete-customer-closing" data-id="{{ $customer->id }}" class="btn btn-danger btn-sm">DELETE</a>
                                         
                                     </td>
                                 </tr>
@@ -67,6 +66,5 @@
     </div>
         @include('customer_closing.create')
         
-        @include('customer_closing.delete')
         
 @endsection

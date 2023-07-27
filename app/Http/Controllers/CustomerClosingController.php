@@ -359,15 +359,15 @@ class CustomerClosingController extends Controller
      */
     public function destroy(string $id)
     {
-        $image = CustomerClosing::find($id);
-        File::delete('img/foto_ktp/'.$image->fto_ktp);
-        File::delete('img/foto_rumah/'.$image->fto_rumah);
-        CustomerClosing::where('id', $id)->delete();
+        // $image = CustomerClosing::find($id);
+        // File::delete('img/foto_ktp/'.$image->fto_ktp);
+        // File::delete('img/foto_rumah/'.$image->fto_rumah);
+        // CustomerClosing::where('id', $id)->delete();
         
-        //return response
-        return response()->json([
-            'success' => true,
-            'message' => 'Data Customer Berhasil Dihapus!.',
-        ]); 
+        // //return response
+        // return response()->json([
+        //     'success' => true,
+        //     'message' => 'Data Customer Berhasil Dihapus!.',
+        // ]); 
     }
 }

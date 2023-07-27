@@ -17,7 +17,7 @@ class CustomerProspectController extends Controller
      */
     public function index()
     {
-        $customers = CustomerProspect::with('status','metode_bertemu')->get();
+        $customers = CustomerProspect::where('status_id','1')->orWhere('status_id','2')->with('status','metode_bertemu')->orderBy('status_id')->get();
         $status = Status::get();
         $metode_bertemu = MetodeBertemu::get();
         $title='customer prospect';
@@ -38,8 +38,8 @@ class CustomerProspectController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name'      => 'required',
-            'alamat'    =>'required',
+            'name'     => 'required',
+            'alamat'     =>'required',
             'no_tlpn'      => 'required',
             'metode_bertemu'=> 'required',
             'status'    => 'required',
@@ -126,12 +126,12 @@ class CustomerProspectController extends Controller
      */
     public function destroy(string $id)
     {
-        CustomerProspect::where('id', $id)->delete();
+        // CustomerProspect::where('id', $id)->delete();
         
-        //return response
-        return response()->json([
-            'success' => true,
-            'message' => 'Data Customer Berhasil Dihapus!.',
-        ]); 
+        // //return response
+        // return response()->json([
+        //     'success' => true,
+        //     'message' => 'Data Customer Berhasil Dihapus!.',
+        // ]); 
     }
 }

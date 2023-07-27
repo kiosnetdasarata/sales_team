@@ -2,6 +2,10 @@
     @section('content')
     <div class="container" style="margin-top: 50px">
         <div class="row">
+            
+            <a style="float: right;" href="{{ url('/customer_closing') }}" class="btn btn-primary mb-3">
+                <i class="bi bi-arrow-left nav_icon"></i> </a>
+           
             <div class="col-md-12">
                 @foreach ($customer_closing as $customer_closings)
                 <h4 class="text-center">Edit Data Customer </h4>
