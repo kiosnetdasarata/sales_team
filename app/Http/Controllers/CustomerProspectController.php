@@ -85,13 +85,15 @@ class CustomerProspectController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, CustomerProspect $customerProspect)
     {
-        $id         = $request->id;
+        
         $validator = Validator::make($request->all(), [
-            'name'        => 'required',
-            'no_tlpn'    => 'required',
-            'alamat'    => 'required',
+            'name'          => 'required',
+            'no_tlpn'       => 'required',
+            'alamat'        => 'required',
+            'metode_bertemu'=> 'required',
+            'status'        => 'required',
            
         ]);
 
@@ -100,17 +102,23 @@ class CustomerProspectController extends Controller
             return response()->json($validator->errors(), 422);
         }
         //create post
-        CustomerProspect::where('id',$id)->update([
-            'nama'     => $request->name, 
+        $customerProspect->update([
+            'nama'              => $request->name, 
             'alamat'            => $request->alamat,
-            'no_tlpn'          => $request->no_tlpn,
+            'no_tlpn'           => $request->no_tlpn,
+            'metode_bertemu_id' => $request->metode_bertemu,
+            'status_id'         => $request->status
             
         ]);
         
        
 
         //return response
-        return redirect()->back();
+        return response()->json([
+            'success' => true,
+            'message' => 'Data Berhasil Diudapte!',
+            'data'    => $customerProspect
+        ]);
     }
 
     /**

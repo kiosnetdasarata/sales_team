@@ -3,16 +3,13 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">EDIT Customer</h5>
+                <h5 class="modal-title" id="exampleModalLabel">EDIT Customer Prospect</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{'customer_prospect'}}"  method="POST" enctype="multipart/form-data"> 
-                
-                @csrf
-                @method('put')
-            <div class="modal-body">
+            
+                <div class="modal-body">
 
                 <input type="hidden" name="id" id="id">
 
@@ -51,17 +48,18 @@
                        </select>
                     <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-title"></div>
                 </div>
-            </div>
                
-            </div>
-            <div class="modal-footer">
+               
+                </div>
+                <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">TUTUP</button>
-                <button type="submit" class="btn btn-primary" id="update">UPDATE</button>
+                <button type="button" class="btn btn-primary" id="update">UPDATE</button>
+                </div>
             </div>
-        </form>
+           
         </div>
     </div>
-</div>
+
 
 <script>
     //button create post event
@@ -71,7 +69,7 @@
         
         //fetch detail post with ajax
         
-        console.log(id);
+        
         $.ajax({
             url: `/customer_prospect/${id}`,
             type: "GET",
@@ -80,21 +78,89 @@
 
                 //fill data to form
                 $('#id').val(response.data.id);
-                console.log(response.data.id);
+                
                 $('#name-edit').val(response.data.nama);
                 $('#alamat-edit').val(response.data.alamat);
                 $('#no_tlpn-edit').val(response.data.no_tlpn);
                 $('#metode_bertemu-edit').val(response.data.metode_bertemu_id);
                 $('#status-edit').val(response.data.status_id);
-                //open modasl
-            
+                //open modal
+               
                 $('#modal-edit').modal('show');
             }
         });
-    
+       
     });
 
+    //action update post
+    $('#update').click(function(e) {
+        e.preventDefault();
+
+        //define variable
+        let id = $('#id').val();
+        
+        let name                = $('#name-edit').val();
+        let alamat              = $('#alamat-edit').val();
+        let no_tlpn             = $('#no_tlpn-edit').val();
+        let metode_bertemu      = $('#metode_bertemu-edit').val();
+        let status              = $('#status-edit').val();
+       
+        let token   = $("meta[name='csrf-token']").attr("content");
+        
+        //ajax
+        $.ajax({
+
+            url: `/customer_prospect/${id}`,
+            type: "PUT",
+            cache: false,
+            data: {
+                "name"              : name,
+                "no_tlpn"           : no_tlpn,
+                "alamat"            : alamat,
+                "metode_bertemu"    : metode_bertemu,
+                "status"            : status,
+                "_token": token
+            },
+            success:function(response){
+
+                //show success message
+                Swal.fire({
+                   
+                    icon: 'success',
+                    title: `${response.message}`,
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+
+                
+                $('#modal-edit').modal('hide');
+                setTimeout(function(){
+                    location.reload();
+                }, 1000);
+                
+
+            },
+            error:function(error){
+                
+                if(error.responseJSON.title[0]) {
+
+                    //show alert
+                    $('#alert-name-edit').removeClass('d-none');
+                    $('#alert-name-edit').addClass('d-block');
+
+                    //add message to alert
+                    $('#alert-name-edit').html(error.responseJSON.title[0]);
+                } 
+
+               
+
+            }
+
+        });
+
+    });
+
+   
     
 
 </script>
-
