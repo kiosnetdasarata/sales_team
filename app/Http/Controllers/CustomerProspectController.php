@@ -38,8 +38,8 @@ class CustomerProspectController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name'     => 'required',
-            'alamat'     =>'required',
+            'name'      => 'required',
+            'alamat'    =>'required',
             'no_tlpn'      => 'required',
             'metode_bertemu'=> 'required',
             'status'    => 'required',

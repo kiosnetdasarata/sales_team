@@ -86,12 +86,12 @@
                 $('#no_tlpn-edit').val(response.data.no_tlpn);
                 $('#metode_bertemu-edit').val(response.data.metode_bertemu_id);
                 $('#status-edit').val(response.data.status_id);
-                //open modal
-               
+                //open modasl
+            
                 $('#modal-edit').modal('show');
             }
         });
-       
+    
     });
 
     
