@@ -7,34 +7,30 @@
                 <h4 class="text-center">Edit Data Customer </h4>
             <form {{route('update_customer_closing', ["id" => $customer_closings->id])}} name="form_edit" id="form_edit" method="POST" enctype="multipart/form-data"> 
                 
-                @csrf
-                @method('put')
-            <div class="modal-body">
-                
+            @csrf
+            @method('put')
+            <div class="modal-body">   
                 <input type="hidden" name="id" id="id" value="{{$customer_closings->id}}">
-                
                 <div class="form-group">
                     <label for="name" class="control-label">Nama Customer Closing</label>
                     <select class="select2 form-control" disabled="true">
-                        
-                             <option value="{{ $customer_closings->prospect_id }}">{{ $customer_closings->customer_prospect->nama }}</option>
-                         
-                       </select>
-                       <input type="hidden" name="prospect_id" id="prospect_id" value="{{$customer_closings->prospect_id}}">
+                        <option value="{{ $customer_closings->prospect_id }}">{{ $customer_closings->customer_prospect->nama }}</option>
+                    </select>
+                    <input type="hidden" name="prospect_id" id="prospect_id" value="{{$customer_closings->prospect_id}}">
                     <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-title"></div>
                 </div>
                     <div class="form-group">
                         <label for="name" class="control-label">Nama Paket</label>
                         <select class="select2 form-control" name="paket_id" id="paket_id-edit">
                             <option disabled selected>--pilih Paket--</option>
-                             @foreach ($pakets as $paket)
-                                 <option value="{{ $paket->id }}" 
+                            @foreach ($pakets as $paket)
+                                <option value="{{ $paket->id }}" 
                                     @if($paket->id == $customer_closings->paket_id)  {
 
                                     '' selected } @endif>{{ $paket->nama_layanan }}</option>
-                             @endforeach
+                            @endforeach
                             
-                           </select>
+                        </select>
                         <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-title"></div>
                     </div>
                         <div class="form-group">
@@ -43,11 +39,11 @@
                                 <option disabled selected>--pilih Promo--</option>
                                 @foreach ($programs as $program)
                                 <option value="{{ $program->id }}" 
-                                   @if($program->id == $customer_closings->paket_id)  {
+                                @if($program->id == $customer_closings->paket_id)  {
 
-                                   '' selected } @endif>{{ $program->nama_program }}</option>
+                                '' selected } @endif>{{ $program->nama_program }}</option>
                             @endforeach
-                               </select>
+                            </select>
                             <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-title"></div>
                         </div>
                         <div class="form-group">
@@ -76,12 +72,12 @@
                             <label for="name" class="control-label">Province</label>
                             <select class="select2 form-control" name="province_id" id="province_id-edit">
                                 <option disabled selected>--Select Province--</option>
-                                 @foreach ($provinces as $province)
-                                     <option value="{{ $province->id }}"@if($province->id == $customer_closings->provinsi_id)  {
+                                @foreach ($provinces as $province)
+                                    <option value="{{ $province->id }}"@if($province->id == $customer_closings->provinsi_id)  {
 
                                         '' selected } @endif>{{ $province->nama }}</option>
-                                 @endforeach
-                               </select>
+                                @endforeach
+                            </select>
                             <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-title"></div>
                         </div>
                         <div class="form-group">
@@ -92,7 +88,7 @@
                                         <option {{ ($customer_closings->kota_id == $regencie->id) ? 'selected' : '' }} value="{{ $regencie->id }}">{{ $regencie->nama }}</option>
                                     @endforeach
                                 @endif
-                               </select>
+                            </select>
                             <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-title"></div>
                         </div>
                         <div class="form-group">
@@ -103,7 +99,7 @@
                                     <option {{ ($customer_closings->kecamatan_id == $district->id) ? 'selected' : '' }} value="{{ $district->id }}">{{ $district->nama }}</option>
                                 @endforeach
                             @endif
-                               </select>
+                            </select>
                             <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-title"></div>
                         </div>
                         <div class="form-group">
@@ -114,7 +110,7 @@
                                     <option {{ ($customer_closings->dusun_id == $village->id) ? 'selected' : '' }} value="{{ $village->id }}">{{ $village->nama }}</option>
                                 @endforeach
                             @endif
-                               </select>
+                            </select>
                             <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-title"></div>
                         </div>
                         <div class="form-group">
@@ -145,15 +141,14 @@
                             <input type="hidden" name="foto_rumah_lama" id="foto_rumah_lama" value="{{$customer_closings->fto_rumah}}">
                         </div>
                         @endforeach
-               
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">TUTUP</button>
+                        <button type="submit" class="btn btn-primary" id="update">UPDATE</button>
+                    </div>
+                </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">TUTUP</button>
-                <button type="submit" class="btn btn-primary" id="update">UPDATE</button>
-            </div>
-        </form>
         </div>
-    </div>
     </div>
 
 
@@ -161,14 +156,14 @@
     $(document).ready(function () {
             $('#province_id-edit').on('change', function () {
                 var idCountry = this.value;
-                console.log(idCountry);
+                
                 $("#regencies_id-edit").html('');
                 $.ajax({
-                    url: "{{url('api/fetch-regencies')}}",
+                    url : "{{url('api/fetch-regencies')}}",
                     type: "POST",
                     data: {
-                        province_id: idCountry,
-                        _token: '{{csrf_token()}}'
+                        province_id : idCountry,
+                        _token      : '{{csrf_token()}}'
                     },
                     dataType: 'json',
                     success: function (result) {
@@ -187,8 +182,8 @@
                     url: "{{url('api/fetch-district')}}",
                     type: "POST",
                     data: {
-                        regencie_id: idCountry,
-                        _token: '{{csrf_token()}}'
+                        regencie_id : idCountry,
+                        _token      : '{{csrf_token()}}'
                     },
                     dataType: 'json',
                     success: function (result) {
@@ -196,7 +191,7 @@
                         $.each(result.district, function (key, value) {
                             $("#district_id-edit").append('<option value="' + value.id + '">' + value.nama + '</option>');
                         });
-                         $('#village_id-edit').html('<option value="">Select Village</option>');
+                        $('#village_id-edit').html('<option value="">Select Village</option>');
                     }
                 });
             });
@@ -207,8 +202,8 @@
                     url: "{{url('api/fetch-village')}}",
                     type: "POST",
                     data: {
-                        district_id: idCountry,
-                        _token: '{{csrf_token()}}'
+                        district_id : idCountry,
+                        _token      : '{{csrf_token()}}'
                     },
                     dataType: 'json',
                     success: function (result) {
@@ -222,17 +217,7 @@
             });
         });
 
-//         $("#form_edit").submit(function(event){
-//         event.preventDefault();
-//         let id = $customerclosing->id;
-//         console.log(id);
-//         $.ajax({
-//             url: '/edit/${id}',
-//             type: 'post',
-//             data: $("#form_edit").serializeArray(),
-//             dataType: 'json',
-//         }); 
-//    })
+
     </script>
 
 @endsection

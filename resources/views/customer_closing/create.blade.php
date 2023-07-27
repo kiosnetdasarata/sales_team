@@ -15,30 +15,30 @@
                     <label for="name" class="control-label">Nama Customer Closing</label>
                     <select class="select2 form-control" name="prospect_id" id="prospect_id">
                         <option disabled selected>--pilih Customer--</option>
-                         @foreach ($prospects as $prospect)
-                             <option value="{{ $prospect->id }}">{{ $prospect->nama }}</option>
-                         @endforeach
-                       </select>
+                        @foreach ($prospects as $prospect)
+                            <option value="{{ $prospect->id }}">{{ $prospect->nama }}</option>
+                        @endforeach
+                    </select>
                     <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-title"></div>
                 </div>
                     <div class="form-group">
                         <label for="name" class="control-label">Nama Paket</label>
                         <select class="select2 form-control" name="paket_id" id="paket_id">
                             <option disabled selected>--pilih Paket--</option>
-                             @foreach ($pakets as $paket)
-                                 <option value="{{ $paket->id }}">{{ $paket->nama_layanan }}</option>
-                             @endforeach
-                           </select>
+                            @foreach ($pakets as $paket)
+                                <option value="{{ $paket->id }}">{{ $paket->nama_layanan }}</option>
+                            @endforeach
+                        </select>
                         <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-title"></div>
                     </div>
                         <div class="form-group">
                             <label for="name" class="control-label">Nama Promo</label>
                             <select class="select2 form-control" name="promo_id" id="promo_id">
                                 <option disabled selected>--pilih Promo--</option>
-                                 @foreach ($programs as $program)
-                                     <option value="{{ $program->id }}">{{ $program->nama_program }}</option>
-                                 @endforeach
-                               </select>
+                                @foreach ($programs as $program)
+                                    <option value="{{ $program->id }}">{{ $program->nama_program }}</option>
+                                @endforeach
+                            </select>
                             <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-title"></div>
                         </div>
                         <div class="form-group">
@@ -63,31 +63,28 @@
                             <label for="name" class="control-label">Province</label>
                             <select class="select2 form-control" name="province_id" id="province_id">
                                 <option disabled selected>--Select Province--</option>
-                                 @foreach ($provinces as $province)
-                                     <option value="{{ $province->id }}">{{ $province->nama }}</option>
-                                 @endforeach
-                               </select>
+                                @foreach ($provinces as $province)
+                                    <option value="{{ $province->id }}">{{ $province->nama }}</option>
+                                @endforeach
+                            </select>
                             <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-title"></div>
                         </div>
                         <div class="form-group">
                             <label for="name" class="control-label">Kota</label>
                             <select class="select2 form-control" name="regencies_id" id="regencies_id">
-                                 
-                               </select>
+                            </select>
                             <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-title"></div>
                         </div>
                         <div class="form-group">
                             <label for="name" class="control-label">Kecamatan</label>
                             <select class="select2 form-control" name="district_id" id="district_id">
-                                 
-                               </select>
+                            </select>
                             <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-title"></div>
                         </div>
                         <div class="form-group">
                             <label for="name" class="control-label">Dusun</label>
                             <select class="select2 form-control" name="village_id" id="village_id">
-                                 
-                               </select>
+                            </select>
                             <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-title"></div>
                         </div>
                         <div class="form-group">
@@ -134,8 +131,8 @@ $(document).ready(function () {
                     url: "{{url('api/fetch-regencies')}}",
                     type: "POST",
                     data: {
-                        province_id: idCountry,
-                        _token: '{{csrf_token()}}'
+                        province_id : idCountry,
+                        _token      : '{{csrf_token()}}'
                     },
                     dataType: 'json',
                     success: function (result) {
@@ -154,8 +151,8 @@ $(document).ready(function () {
                     url: "{{url('api/fetch-district')}}",
                     type: "POST",
                     data: {
-                        regencie_id: idCountry,
-                        _token: '{{csrf_token()}}'
+                        regencie_id : idCountry,
+                        _token      : '{{csrf_token()}}'
                     },
                     dataType: 'json',
                     success: function (result) {
@@ -163,7 +160,7 @@ $(document).ready(function () {
                         $.each(result.district, function (key, value) {
                             $("#district_id").append('<option value="' + value.id + '">' + value.nama + '</option>');
                         });
-                         $('#village_id').html('<option value="">Select Village</option>');
+                        $('#village_id').html('<option value="">Select Village</option>');
                     }
                 });
             });
@@ -174,8 +171,8 @@ $(document).ready(function () {
                     url: "{{url('api/fetch-village')}}",
                     type: "POST",
                     data: {
-                        district_id: idCountry,
-                        _token: '{{csrf_token()}}'
+                        district_id : idCountry,
+                        _token      : '{{csrf_token()}}'
                     },
                     dataType: 'json',
                     success: function (result) {

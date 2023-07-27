@@ -11,7 +11,7 @@
 
                         <table class="table table-bordered table-striped" style="font-size: 15px;">
                             <thead>
-                                <tr style="text-align: center; font-size: 10px;">
+                                <tr style="text-align: center;">
                                 
                                     <th>Nama Customer</th>
                                     <th>Paket</th>
