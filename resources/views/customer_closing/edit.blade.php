@@ -147,7 +147,7 @@
                         @endforeach
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">TUTUP</button>
+                        
                         <button type="submit" class="btn btn-primary" id="update">UPDATE</button>
                     </div>
                 </form>

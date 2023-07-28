@@ -16,6 +16,8 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB as FacadesDB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Gate;
 
 class CustomerClosingController extends Controller
 {
@@ -24,6 +26,7 @@ class CustomerClosingController extends Controller
      */
     public function index()
     {
+        
         $customers  = CustomerClosing::with('customer_prospect','program','service_package','province','regencie','district','village')->get();
         $prospects  = CustomerProspect::where('status_id', '2')->get();
         $prospects2 = CustomerProspect::where('status_id', '3')->get();
@@ -100,10 +103,14 @@ class CustomerClosingController extends Controller
             //     Storage::delete('public/images/' . $emp->foto);
             // }
         } 
+        $count_customer = CustomerClosing::count();
+        $current = Carbon::now()->format('dmy');
+        $format_id = $current.$count_customer+1;
         //create post
         CustomerClosing::create([
+            'id'            => $format_id,
             'prospect_id'   => $request->prospect_id,
-            'paket_id'      =>$request->paket_id,
+            'paket_id'      => $request->paket_id,
             'promo_id'      => $request->promo_id,
             'nik'           => $request->nik,
             'nama'          => $request->nama,
@@ -141,6 +148,8 @@ class CustomerClosingController extends Controller
      */
     public function edit(string $id)
     {
+        
+
         $customer_closing = CustomerClosing::where('id',$id)->with('customer_prospect','program','service_package','province','regencie','district','village')->get();
         $customer_closings = CustomerClosing::where('id',$id)->with('customer_prospect','program','service_package','province','regencie','district','village')->first();
        
@@ -155,13 +164,12 @@ class CustomerClosingController extends Controller
         $pakets = ServicePackage::latest()->get();
         $programs = Program::latest()->get();
 
-        // if ($customer_closing == null ) {
-        //     return redirect(url('/list'));
-        // }
-
+        
         $title='customer closing';
 
         return view('customer_closing.edit', compact('customer_closing','title', 'programs', 'provinces', 'regencies','districts','villages','pakets'));
+    
+       
     }
 
     /**

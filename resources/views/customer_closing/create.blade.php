@@ -89,7 +89,8 @@
                         </div>
                         <div class="form-group">
                             <label for="name" class="control-label">Tanggal Lahir</label>
-                            <input type="date" class="form-control" name="tgl_lahir" id="tlg_lahir">
+                            <input type="date" class="form-control" name="tgl_lahir" id="tlg_lahir" placeholder="dd-mm-yyyy" value=""
+                            min="1997-01-01" max="2030-12-31">
                             <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-name-edit"></div>
                         </div>
                         <div class="form-group">
