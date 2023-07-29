@@ -132,7 +132,25 @@
                     timer: 2000
                 });
 
+//<<<<<<< fitur-3
                 
+//=======
+                //data post
+                // let kategoris = `
+                //     <tr id="index_${response.data.id_kategori}">
+                //         <td>${response.data.name}</td>
+                //         <td class="text-center">
+                //             <a href="javascript:void(0)" id="btn-edit-kategori" data-id="${response.data.id_kategori}" class="btn btn-primary btn-sm">EDIT</a>
+                //             <a href="javascript:void(0)" id="btn-delete-kategori" data-id="${response.data.id_kategori}" class="btn btn-danger btn-sm">DELETE</a>
+                //         </td>
+                //     </tr>
+                // `;
+                
+                // //append to post data
+                // $(`#index_${response.data.id}`).replaceWith(kategoris);
+
+                //close modal
+//>>>>>>> main
                 $('#modal-edit').modal('hide');
                 setTimeout(function(){
                     location.reload();
