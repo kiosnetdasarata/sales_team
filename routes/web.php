@@ -1,6 +1,10 @@
 <?php
 
+use App\Models\CustomerProspect;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SalesController;
+use App\Http\Controllers\CustomerClosingController;
+use App\Http\Controllers\CustomerProspectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +20,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::resource('/sales', SalesController::class);
+Route::resource('/customer_prospect', CustomerProspectController::class);
+Route::resource('/customer_closing', CustomerClosingController::class);
