@@ -31,7 +31,7 @@
                 <a href="{{'customer_prospect'}}" class="nav_link"> 
                     @endif
                 <i class="bi bi-person nav_icon"></i> 
-                    <span class="nav_name">Dashboard</span> 
+                    <span class="nav_name">Customer Prospect</span> 
                 </a> 
             </div>
             {{-- @if ((auth()->user()->role == 0))

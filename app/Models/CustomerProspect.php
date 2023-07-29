@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Status;
+use App\Models\MetodeBertemu;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class CustomerProspect extends Model
 {
@@ -13,7 +15,16 @@ class CustomerProspect extends Model
         'id',
         'nama',
         'alamat',
-        'no_tlpn'
+        'no_tlpn',
+        'metode_bertemu_id',
+        'status_id'
     ];
+    public function status(){
+        return $this->belongsTo(Status::class, 'status_id');
 
+    }
+    public function metode_bertemu(){
+        return $this->belongsTo(MetodeBertemu::class, 'metode_bertemu_id');
+
+    }
 }
