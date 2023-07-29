@@ -132,6 +132,9 @@
                     timer: 2000
                 });
 
+//<<<<<<< fitur-3
+                
+//=======
                 //data post
                 // let kategoris = `
                 //     <tr id="index_${response.data.id_kategori}">
@@ -147,6 +150,7 @@
                 // $(`#index_${response.data.id}`).replaceWith(kategoris);
 
                 //close modal
+//>>>>>>> main
                 $('#modal-edit').modal('hide');
                 setTimeout(function(){
                     location.reload();
@@ -178,4 +182,3 @@
     
 
 </script>
-

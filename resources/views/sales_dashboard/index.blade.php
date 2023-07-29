@@ -8,7 +8,11 @@
 </br>
 
  <div class="row">
-    <div class=" col-md-3" style="border: 1px solid gray; border-radius:25px; padding:3rem; margin-left: 3rem;" >
+//<<<<<<< fitur-3
+    <div class="col-lg-3" style="border: 1px solid gray; border-radius:25px; padding:3rem; margin-top:3rem; margin-left: 3rem;margin-right: 3rem;" >
+//=======
+    //<div class=" col-md-3" style="border: 1px solid gray; border-radius:25px; padding:3rem; margin-left: 3rem;" >
+//>>>>>>> main
         <a href="{{'customer_prospect'}}" style=" color: #545a5f;
        
         text-decoration: none;"> 
@@ -21,7 +25,11 @@
         </div>
     </a>
     </div>
-    <div class=" col-md-3" style="border: 1px solid gray; border-radius:25px; padding:3rem; margin-left: 5rem;margin-right: 5rem;" >
+//<<<<<<< fitur-3
+    <div class="col-lg-3" style="border: 1px solid gray; border-radius:25px; padding:3rem; margin-top:3rem; margin-left: 3rem;margin-right: 3rem;" >
+//=======
+    //<div class=" col-md-3" style="border: 1px solid gray; border-radius:25px; padding:3rem; margin-left: 5rem;margin-right: 5rem;" >
+//>>>>>>> main
         <a href="#" style=" color: #545a5f;
        
         text-decoration: none;"> 
@@ -34,7 +42,11 @@
         </div>
     </a>
     </div>
-    <div class=" col-md-3" style="border: 1px solid gray; border-radius:25px; padding:3rem;margin-right: 3rem;" >
+//<<<<<<< fitur-3
+    <div class="col-lg-3" style="border: 1px solid gray; border-radius:25px; padding:3rem;margin-top:3rem;margin-left: 3rem;margin-right: 3rem;" >
+//=======
+    //<div class=" col-md-3" style="border: 1px solid gray; border-radius:25px; padding:3rem;margin-right: 3rem;" >
+//>>>>>>> main
         <a href="{{'customer_closing'}}" style=" color: #545a5f;
        
         text-decoration: none;"> 

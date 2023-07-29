@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\CustomerClosing;
 use App\Models\CustomerProspect;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Gate;
 
 class SalesController extends Controller
 {
@@ -13,14 +14,30 @@ class SalesController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        $customer_prospect = CustomerProspect::where('status_id','2')->orWhere('status_id','1')->count();
-        $customer_prospect_uncover = CustomerProspect::where('status_id','4')->count();
-        $customer_closing = CustomerClosing::count();
-        $title='dashboard';
-        //$kategoris = Kategori::orderBy('id_kategori', 'asc')->paginate(10);
-        return view('sales_dashboard.index', compact('customer_prospect','customer_prospect_uncover','customer_closing','title'));
+// <<<<<<< fitur-3
+{
+    if (Gate::allows('isSales')) {
+    $customer_prospect = CustomerProspect::where('status_id','2')->orWhere('status_id','1')->count();
+    $customer_prospect_uncover = CustomerProspect::where('status_id','4')->count();
+    $customer_closing = CustomerClosing::count();
+    $title='dashboard';
+    //$kategoris = Kategori::orderBy('id_kategori', 'asc')->paginate(10);
+    return view('sales_dashboard.index', compact('customer_prospect','customer_prospect_uncover','customer_closing','title'));
     }
+    else{
+        $title='dashboard';
+        return view('admin_dashboard.index', compact('title'));
+// =======
+//     {
+//         $customer_prospect = CustomerProspect::where('status_id','2')->orWhere('status_id','1')->count();
+//         $customer_prospect_uncover = CustomerProspect::where('status_id','4')->count();
+//         $customer_closing = CustomerClosing::count();
+//         $title='dashboard';
+        //$kategoris = Kategori::orderBy('id_kategori', 'asc')->paginate(10);
+//         return view('sales_dashboard.index', compact('customer_prospect','customer_prospect_uncover','customer_closing','title'));
+// >>>>>>> main
+    }
+}
 
     /**
      * Show the form for creating a new resource.

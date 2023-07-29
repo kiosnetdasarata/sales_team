@@ -3,131 +3,77 @@
         <div class="header_toggle"> 
             <i class="bi bi-list" id="header-toggle"></i> 
         </div>
+        <div>
+        {{auth()->user()->name}} 
+        </div>
         <div> 
-            <i class="bi bi-person"></i> 
-            {{-- {{auth()->user()->username}} --}}
+             
+                <form action="{{ route('logout') }}" method="post" id="logout-form" >
+                @csrf
+                <button class="btn btn-primary" style=" border: none; padding: none; background:none; margin:none; color:black">
+                <i class="bi bi-box-arrow-in-left nav_icon"></i> 
+            <span class="nav_name">LogOut</span> 
+                </button>
+                </form>
+            
+            
+            
         </div>
         </header>
         <div class="l-navbar" id="nav-bar">
         <nav class="nav">
             <div> 
-                <a href="#" class="nav_logo"> 
+                <a  class="nav_logo"> 
                     <i class="bi bi-layers nav_logo-icon"></i> 
-                    <span class="nav_logo-name">ISP</span> 
+                    <span class="nav_logo-name">DASARATA</span> 
                 </a>
             <div class="nav_list" id="nav_list">
+                @can('isSales')
                 @if($title == 'dashboard') 
-                <a href="{{'sales'}}" class="nav_link active"> 
+                <a href="{{url('sales')}}" class="nav_link active"> 
                 @else
-                <a href="{{'sales'}}" class="nav_link"> 
+                <a href="{{url('sales')}}" class="nav_link"> 
                     @endif
                 <i class="bi bi-grid-1x2-fill nav_icon"></i> 
                     <span class="nav_name">Dashboard</span> 
                 </a> 
 
                 @if($title == 'customer prospect') 
-                <a href="{{'customer_prospect'}}" class="nav_link active"> 
+                <a href="{{url('customer_prospect')}}" class="nav_link active"> 
                 @else
-                <a href="{{'customer_prospect'}}" class="nav_link"> 
+                <a href="{{url('customer_prospect')}}" class="nav_link"> 
                     @endif
-                <i class="bi bi-person nav_icon"></i> 
+                <i class="bi bi-person-dash nav_icon"></i> 
                     <span class="nav_name">Customer Prospect</span> 
                 </a> 
-            </div>
-            {{-- @if ((auth()->user()->role == 0))
-            <div> 
-                <a href="#" class="nav_logo"> 
-                    <i class="bi bi-layers nav_logo-icon"></i> 
-                    <span class="nav_logo-name">ISP</span> 
-                </a>
-            <div class="nav_list" id="nav_list">
-                @if($title == 'dashboard') 
-                <a href="{{route('dashboard')}}" class="nav_link active"> 
+
+                @if($title == 'customer closing') 
+                <a href="{{url('customer_closing')}}" class="nav_link active"> 
                 @else
-                <a href="{{route('dashboard')}}" class="nav_link"> 
+                <a href="{{url('customer_closing')}}" class="nav_link"> 
+                    @endif
+                <i class="bi bi-person-check nav_icon"></i> 
+                    <span class="nav_name">Customer Closing</span> 
+                </a> 
+                
+               
+                @else
+                @if($title == 'dashboard') 
+                <a href="{{url('sales')}}" class="nav_link active"> 
+                @else
+                <a href="{{url('sales')}}" class="nav_link"> 
                     @endif
                 <i class="bi bi-grid-1x2-fill nav_icon"></i> 
                     <span class="nav_name">Dashboard</span> 
                 </a> 
-           
-                @if($title == 'paket') 
-                <a href="{{route('paket')}}" class="nav_link active"> 
-                    @else
-                    <a href="{{route('paket')}}" class="nav_link"> 
-                        @endif
-
-                    <i class="bi bi-folder nav_icon"></i> 
-                    <span class="nav_name">Paket</span> 
-                </a> 
-                @if($title == 'laporan') 
-                <a href="{{route('laporan')}}" class="nav_link active"> 
-                    @else
-                    <a href="{{route('laporan')}}" class="nav_link"> 
-                        @endif
-
-                    <i class="bi bi-pass nav_icon"></i> 
-                    <span class="nav_name">Laporan</span> 
-                </a> 
-                @if($title == 'sales')
-                <a href="{{route('sales')}}" class="nav_link active">
-                    @else 
-                <a href="{{route('sales')}}" class="nav_link"> 
-                    @endif
-                    <i class="bi bi-person nav_icon"></i> 
-                    <span class="nav_name">Sales</span> 
-                </a>
+                @endcan
             
                 
-                
-            </div> 
-            @else
-            <div> 
-                <a href="#" class="nav_logo"> 
-                    <i class="bi bi-layers nav_logo-icon"></i> 
-                    <span class="nav_logo-name">ISP</span> 
-                </a>
-            <div class="nav_list" id="nav_list">
-                @if($title == 'dashboard') 
-                <a href="{{route('dashboard')}}" class="nav_link active"> 
-                @else
-                <a href="{{route('dashboard')}}" class="nav_link"> 
-                    @endif
-                <i class="bi bi-grid-1x2-fill nav_icon"></i> 
-                    <span class="nav_name">Dashboard</span> 
-                </a> 
-           
-                @if($title == 'customer') 
-                <a href="{{route('customer')}}" class="nav_link active"> 
-                    @else
-                    <a href="{{route('customer')}}" class="nav_link"> 
-                        @endif
-
-                    <i class="bi bi-file-earmark-person nav_icon"></i> 
-                    <span class="nav_name">Customer</span> 
-                </a> 
-                
-                @if($title == 'Update Password')
-                <a href="{{'password_update'}}" class="nav_link active">
-                    @else 
-                <a href="{{'password_update'}}" class="nav_link"> 
-                    @endif
-                    <i class="bi bi-person nav_icon"></i> 
-                    <span class="nav_name">Update Password</span> 
-                </a>
             </div>
-            @endif --}}
-        
-            {{-- </div>
-    <form action="{{ route('logout') }}" method="post" id="logout-form" >
-        @csrf
-        <a class="nav_link" >
-            <button style="border: none; background: none; padding: none; color:white">
-            <i class="bi bi-box-arrow-in-left nav_icon"></i> 
-            <span class="nav_name">SignOut</span> 
-        </button>
+            
         </a>
         
-    </form> --}}
+    
         </nav>
         </div>
         
